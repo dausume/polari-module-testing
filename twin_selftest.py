@@ -2,7 +2,7 @@
 Selftest — acct-3: twin coherence phase wiring.
 
 Run from polari-framework/:
-    python3 -m testing.selftest_twin
+    python3 -m testing.twin_selftest
 
 Covers the wiring + honesty ladder cheaply (the coherence PROOF
 itself is the twin:rehearsal matrix row — a ~5min three-container
@@ -41,7 +41,7 @@ def _catalog_row():
 
 
 def _honesty():
-    from testing.twin_checks import check_twin_rehearsal
+    from testing.custom.twin_checks import check_twin_rehearsal
     print('environment honesty')
     saved = os.environ.get('POLARI_TWIN_IMAGE')
     os.environ['POLARI_TWIN_IMAGE'] = 'acct3-no-such-image:none'
@@ -60,9 +60,9 @@ def _honesty():
 
 def _imports():
     print('rehearsal machinery imports')
-    from testing.twin_http import crude_create, json_call
+    from testing.custom.twin_http import crude_create, json_call
     from testing.twin_lease_api import TwinLeaseAPI
-    from testing.twin_rehearsal import _ref
+    from testing.custom.twin_rehearsal import _ref
     body = _ref(fields={'x': 1}, path='name')
     check('ref shape carries authority + className + path',
           body['ref']['authority'] == {'instance': 'm'}
@@ -77,7 +77,7 @@ def _imports():
 
 def _full_rehearsal():
     from testing.check_catalog import catalog_by_name
-    from testing.check_runners import run_check
+    from testing.custom.check_runners import run_check
     print('FULL rehearsal (POLARI_TWIN_SELFTEST_FULL=1; ~5min)')
     row = run_check(catalog_by_name()['twin:rehearsal'])
     check('twin:rehearsal green', row['status'] == 'pass',

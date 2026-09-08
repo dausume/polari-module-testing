@@ -2,7 +2,7 @@
 acct-3: the twin-coherence rehearsal — the manual xsim-6/modsplit
 proof as ONE repeatable command with guaranteed teardown:
 
-    python3 -m testing.twin_rehearsal
+    python3 -m testing.custom.twin_rehearsal
 
 Boots three THROWAWAY containers on their own network (core=a all
 modules, m=materialsScience only, n=aquaponics only — the current
@@ -36,10 +36,10 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__))))
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from testing.twin_fixtures import TwinRun
-from testing.twin_http import (
+from testing.custom.twin_fixtures import TwinRun
+from testing.custom.twin_http import (
     crude_create, crude_update, created_id, json_call,
 )
 

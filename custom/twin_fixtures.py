@@ -1,5 +1,5 @@
 """
-@module testing.twin_fixtures
+@module testing.custom.twin_fixtures
 
 acct-3: throwaway twin fixtures — fresh core+m+n containers per run,
 torn down after (plan §4: clean over fast; the suite must leave NO

@@ -1,9 +1,9 @@
 """
-@module testing.transport_checks
+@module testing.custom.transport_checks
 
 acct-2: LIVE transport rows (callable-kind). The in-process
 round-trip proofs live in selftest_stomp / selftest_formats /
-grpcbridge.selftest_serving — these rows probe the REAL staging
+grpcbridge.serving_selftest — these rows probe the REAL staging
 sidecars (both daemon threads inside prf-backend: STOMP :3001,
 gRPC :3002):
 
@@ -29,7 +29,7 @@ container and no env knob -> skip-honest; declared-but-down -> RED.
 import asyncio
 import os
 
-from testing.substrate_env import (
+from testing.custom.substrate_env import (
     classify_absence, container_ip, container_state,
 )
 

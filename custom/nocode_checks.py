@@ -1,5 +1,5 @@
 """
-@module testing.nocode_checks
+@module testing.custom.nocode_checks
 
 ncg-0 (the acct-4 sliver): the editor-vs-engine variant sweep + the
 TypeScript-side parity row.

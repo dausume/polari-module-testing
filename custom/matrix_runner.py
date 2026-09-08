@@ -1,5 +1,5 @@
 """
-@module testing.matrix_runner
+@module testing.custom.matrix_runner
 
 acct-0: run the capability matrix (or a category/name slice) and
 produce ONE run record — the source both the CheckRun tree objects
@@ -9,7 +9,7 @@ With a manager, the run is also written INTO the tree
 ([[object-coherence]]): every catalog entry is synced to a
 CapabilityCheck row (registration layer), each row's last_* fields
 are updated from its result, and the run persists as a CheckRun.
-Without a manager (the CI entrypoint testing.run_matrix), the same
+Without a manager (the CI entrypoint testing.custom.run_matrix), the same
 record still emits the YAML report — same data, no second
 bookkeeping.
 
@@ -27,8 +27,8 @@ import time
 from datetime import datetime, timezone
 
 from testing.check_catalog import FRAMEWORK_ROOT, catalog_checks
-from testing.check_runners import run_check
-from testing.report_yaml import write_report
+from testing.custom.check_runners import run_check
+from testing.custom.report_yaml import write_report
 
 
 def _now_iso():
@@ -83,10 +83,10 @@ def collect_coverage(results_dir, log=print):
     {percent, files, report} — None when the knob is off. The
     combined report only measures in-process python checks (docker
     fixtures run their own interpreters — stated, not hidden)."""
-    from testing.check_runners import (
+    from testing.custom.check_runners import (
         coverage_data_file, coverage_enabled,
     )
-    from testing.report_yaml import DEFAULT_RESULTS_DIR
+    from testing.custom.report_yaml import DEFAULT_RESULTS_DIR
     if not coverage_enabled():
         return None
     results_dir = results_dir or DEFAULT_RESULTS_DIR

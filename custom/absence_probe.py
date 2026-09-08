@@ -7,7 +7,7 @@ surface, no /api/accountability route.
 
 Run from polari-framework/ (the matrix runs it with a scrubbed env;
 running it by hand in a test-build shell would honestly FAIL):
-    python3 -m testing.absence_probe
+    python3 -m testing.custom.absence_probe
 """
 
 import os

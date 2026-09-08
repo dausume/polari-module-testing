@@ -13,9 +13,9 @@ unittest file and "passed" identically on both dialects without
 touching either — this probe replaces that.)
 
 Run from polari-framework/ (the parity check runs it twice):
-    DATABASE_TYPE=sqlite  python3 -m testing.parity_probe
+    DATABASE_TYPE=sqlite  python3 -m testing.parity_probe_basis
     DATABASE_TYPE=mariadb MARIADB_DATABASE=polari_objects_test \
-        MARIADB_HOST=... python3 -m testing.parity_probe
+        MARIADB_HOST=... python3 -m testing.parity_probe_basis
 
 Prints one machine-readable line: PARITY_RESULT {json}.
 """

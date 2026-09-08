@@ -2,7 +2,7 @@
 Selftest — ncg-0: the no-code capability matrix (the acct-4 sliver).
 
 Run from polari-framework/:
-    python3 -m testing.selftest_nocode_matrix
+    python3 -m testing.nocode_matrix_selftest
 
 Covers: the catalog carries one variant row per node type from the
 container-stable set (registry ∪ engine dispatch) plus the sweep
@@ -59,7 +59,7 @@ def _catalog_rows():
 
 
 def _inventory():
-    from testing.nocode_checks import (variant_inventory,
+    from testing.custom.nocode_checks import (variant_inventory,
                                        variant_class_names)
     print('inventory (live sources)')
     names = variant_class_names()
@@ -77,7 +77,7 @@ def _inventory():
 
 
 def _judging():
-    from testing.nocode_checks import _judge, check_variant
+    from testing.custom.nocode_checks import _judge, check_variant
     print('drift judge')
     lying = {'registry_status': 'real', 'registry_runtime': None,
              'python_dispatched': False, 'palette': None,
@@ -100,7 +100,7 @@ def _judging():
 
 
 def _dynamic_callables():
-    import testing.nocode_checks as mod
+    import testing.custom.nocode_checks as mod
     print('dynamic per-class callables')
     fn = mod.check_variant_ConditionalChain
     row = fn()
@@ -117,7 +117,7 @@ def _dynamic_callables():
 
 
 def _honesty_paths():
-    from testing.nocode_checks import (check_variant_sweep,
+    from testing.custom.nocode_checks import (check_variant_sweep,
                                        check_ts_parity, check_variant)
     print('honesty paths (Angular tree unreachable)')
     os.environ['POLARI_ANGULAR_ROOT'] = '/nonexistent-angular'

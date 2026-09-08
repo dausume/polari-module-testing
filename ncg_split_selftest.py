@@ -2,7 +2,7 @@
 Selftest — ncg-7: the ncg levels split honestly across small nodes.
 
 Run from polari-framework/:
-    python3 -m testing.selftest_ncg_split
+    python3 -m testing.ncg_split_selftest
 
 Dustin's directive (2026-07-16): the digital level, the circuit
 level, and the judicial client must be able to ride DIFFERENT small
@@ -41,7 +41,7 @@ def _probe(level):
     env['NCG_PROBE_EXPECT'] = level
     env['PYTHONPATH'] = FRAMEWORK_ROOT
     proc = subprocess.run(
-        [sys.executable, '-m', 'testing.ncg_split_probe'],
+        [sys.executable, '-m', 'testing.custom.ncg_split_probe'],
         cwd=FRAMEWORK_ROOT, env=env, timeout=600,
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     tail = '\n'.join((proc.stdout or '').strip().splitlines()[-3:])

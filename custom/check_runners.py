@@ -1,5 +1,5 @@
 """
-@module testing.check_runners
+@module testing.custom.check_runners
 
 acct-0: run ONE catalog entry and return an honest result row.
 
@@ -14,7 +14,7 @@ Runners WRAP the existing surfaces — zero test duplication:
               WITH the suggestion naming the knob/compose that would
               make it runnable ([[knobs-and-suggestions]]) — never
               silently green, never silently missing.
-  absence     `python3 -m testing.absence_probe` in a scrubbed env
+  absence     `python3 -m testing.custom.absence_probe` in a scrubbed env
               (no POLARI_TEST_BUILD / POLARI_MODULES): the pinned
               normal-build absence assert.
 

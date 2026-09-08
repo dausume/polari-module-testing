@@ -1,7 +1,7 @@
 """
 The test-build entrypoint — "full test suite" is a BUILD TARGET:
 
-    python3 -m testing.run_matrix [--category substrate]
+    python3 -m testing.custom.run_matrix [--category substrate]
                                   [--check <name> ...] [--list]
                                   [--results-dir DIR] [--live-url URL]
                                   [--timeout SECONDS]
@@ -16,12 +16,12 @@ import argparse
 import sys
 
 from testing.check_catalog import catalog_checks
-from testing.matrix_runner import exit_code_for, run_matrix
+from testing.custom.matrix_runner import exit_code_for, run_matrix
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        prog='python3 -m testing.run_matrix',
+        prog='python3 -m testing.custom.run_matrix',
         description='Run the accountability capability matrix.')
     parser.add_argument('--category',
                         help='only checks in this category')

@@ -1,5 +1,5 @@
 """
-@module testing.substrate_checks
+@module testing.custom.substrate_checks
 
 acct-1: LIVE substrate checks — databases + cache — as callable
 matrix rows (runner_kind 'callable'). Each callable returns a
@@ -34,7 +34,7 @@ import subprocess
 import time
 
 from testing.check_catalog import FRAMEWORK_ROOT
-from testing.substrate_env import (
+from testing.custom.substrate_env import (
     MARIADB_CONTAINER, classify_absence, disruption_allowed,
     resolve_keydb, resolve_mariadb,
 )
@@ -204,7 +204,7 @@ def _parity_leg(dialect, endpoint, timeout):
                    MARIADB_PASSWORD=endpoint['password'],
                    MARIADB_DATABASE=PARITY_SCHEMA)
     proc = subprocess.run(
-        ['python3', '-m', 'testing.parity_probe'],
+        ['python3', '-m', 'testing.parity_probe_basis'],
         cwd=FRAMEWORK_ROOT, env=env, stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT, text=True, timeout=timeout)
     for line in proc.stdout.splitlines():

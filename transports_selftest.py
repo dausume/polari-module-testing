@@ -2,7 +2,7 @@
 Selftest — acct-2: transports + formats phase wiring.
 
 Run from polari-framework/:
-    python3 -m testing.selftest_transports
+    python3 -m testing.transports_selftest
 
 Covers: the acct-2 rows are on the matrix with the right categories
 and criticalities (format golden shapes blocking; grpc-3
@@ -55,7 +55,7 @@ def _catalog_rows():
 
 
 def _in_process_proofs(by_name):
-    from testing.check_runners import run_check
+    from testing.custom.check_runners import run_check
     print('in-process round-trip proofs (subprocess rows)')
     row = run_check(by_name['selftest:testing.formats'])
     check('format golden shapes green',
@@ -68,7 +68,7 @@ def _in_process_proofs(by_name):
 
 
 def _grpc3_placeholders(by_name):
-    from testing.check_runners import run_check
+    from testing.custom.check_runners import run_check
     print('grpc-3 placeholders')
     for name in ('transport:grpc-parity-measurement',
                  'transport:grpc-peer-watch'):
@@ -79,8 +79,8 @@ def _grpc3_placeholders(by_name):
 
 
 def _live_probes(by_name):
-    from testing.check_runners import run_check
-    from testing.transport_checks import _resolve_backend
+    from testing.custom.check_runners import run_check
+    from testing.custom.transport_checks import _resolve_backend
     reachable = _resolve_backend('POLARI_STOMP_WS_URL',
                                  3001)['host'] is not None
     print(f'live sidecar probes (staging reachable: {reachable})')

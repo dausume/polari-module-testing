@@ -2,13 +2,13 @@
 Selftest — acct-2: the STOMP transport, over the REAL wire.
 
 Run from polari-framework/:
-    python3 -m testing.selftest_stomp
+    python3 -m testing.stomp_selftest
 
 Boots the actual StompWebSocketServer on a scratch port and drives
 it with a real websocket client (the only prior coverage was the
-FakeStomp publish seam in grpcbridge.selftest_serving — no test
+FakeStomp publish seam in grpcbridge.serving_selftest — no test
 ever opened a socket): CONNECT -> CONNECTED, SUBSCRIBE, then a
-CRUDE-style publish through grpcbridge.transport_mux fan-out ->
+CRUDE-style publish through grpcbridge.custom.transport_mux fan-out ->
 MESSAGE frame received with the notification payload
 ({className, operation, timestamp, instanceIds, formatType}).
 Pins the knobs: polariTreeWsEnabled=False publishes NOTHING (the
@@ -74,7 +74,7 @@ async def _recv_frame(ws, timeout=5):
 
 async def _session(server):
     import websockets
-    from grpcbridge.transport_mux import publish_crude_change
+    from grpcbridge.custom.transport_mux import publish_crude_change
     async with websockets.connect(
             f'ws://127.0.0.1:{PORT}') as ws:
         await ws.send(build_stomp_frame(

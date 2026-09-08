@@ -1,8 +1,8 @@
 """
-@module testing.twin_checks
+@module testing.custom.twin_checks
 
 acct-3: the twin:rehearsal matrix row — wraps
-`python3 -m testing.twin_rehearsal` (throwaway core+m+n containers,
+`python3 -m testing.custom.twin_rehearsal` (throwaway core+m+n containers,
 full coherence ladder, guaranteed teardown) with the environment
 honesty the compose kind requires: no docker or no backend image ->
 skip-honest naming what would make it runnable.
@@ -13,7 +13,7 @@ import shutil
 import subprocess
 
 from testing.check_catalog import FRAMEWORK_ROOT
-from testing.twin_fixtures import image_name
+from testing.custom.twin_fixtures import image_name
 
 _COUNTS = re.compile(r'(\d+)\s*/\s*(\d+)\s+passed')
 
@@ -44,7 +44,7 @@ def check_twin_rehearsal(timeout=900):
                             'compose) or set POLARI_TWIN_IMAGE.'}
     try:
         proc = subprocess.run(
-            ['python3', '-m', 'testing.twin_rehearsal'],
+            ['python3', '-m', 'testing.custom.twin_rehearsal'],
             cwd=FRAMEWORK_ROOT, timeout=timeout,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True)

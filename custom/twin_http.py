@@ -1,5 +1,5 @@
 """
-@module testing.twin_http
+@module testing.custom.twin_http
 
 acct-3: tiny stdlib HTTP client for the rehearsal — JSON calls plus
 the CRUDE multipart write protocol (the wire format polariCRUDE

@@ -5,7 +5,7 @@ routes) and every other ncg level is fully absent. Run via
 selftest_ncg_split with POLARI_MODULES set; standalone:
 
     POLARI_MODULES=hwdigital NCG_PROBE_EXPECT=hwdigital \\
-        python3 -m testing.ncg_split_probe
+        python3 -m testing.custom.ncg_split_probe
 """
 
 import os

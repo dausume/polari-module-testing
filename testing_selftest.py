@@ -2,7 +2,7 @@
 Selftest — acct-0: the accountability spine.
 
 Run from polari-framework/:
-    python3 -m testing.selftest_testing
+    python3 -m testing.testing_selftest
 
 Covers: catalog discovery (every suite file + module selftest appears
 exactly once, categories/criticalities per plan), runners parse real
@@ -12,7 +12,7 @@ parseable versioned YAML whose blocking_green the exit code mirrors,
 opt-in gating (normal env = disabled; POLARI_TEST_BUILD or explicit
 POLARI_MODULES = enabled), a TEST build seeds + serves + runs the
 matrix through /api/accountability with a persisted CheckRun, and a
-NORMAL build's clean absence (testing.absence_probe subprocess).
+NORMAL build's clean absence (testing.custom.absence_probe subprocess).
 
 NOTE: boots two in-process servers (~40s each) — the presence proof
 and the absence probe are real boots, not mocks.
@@ -80,7 +80,7 @@ def _catalog():
 
 
 def _runners(by_name):
-    from testing.check_runners import run_check
+    from testing.custom.check_runners import run_check
     print('runners parse real surfaces')
     row = run_check(by_name['selftest:waxsupply.wax'])
     check('selftest runner passes + parses counts',
@@ -99,7 +99,7 @@ def _runners(by_name):
 
 
 def _matrix_and_report():
-    from testing.matrix_runner import exit_code_for, run_matrix
+    from testing.custom.matrix_runner import exit_code_for, run_matrix
     print('matrix run + YAML projection')
     results_dir = tempfile.mkdtemp(prefix='acct0-report-')
     record = run_matrix(
@@ -233,7 +233,7 @@ def _normal_build_absence():
     env.pop('POLARI_TEST_BUILD', None)
     env.pop('POLARI_MODULES', None)
     proc = subprocess.run(
-        ['python3', '-m', 'testing.absence_probe'],
+        ['python3', '-m', 'testing.custom.absence_probe'],
         cwd=FRAMEWORK_ROOT, env=env, stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT, text=True, timeout=600)
     tail = '\n'.join(proc.stdout.strip().splitlines()[-3:])

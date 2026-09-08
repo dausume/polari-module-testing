@@ -2,7 +2,7 @@
 Selftest — acct-1: live substrate checks (databases + cache).
 
 Run from polari-framework/:
-    python3 -m testing.selftest_substrate
+    python3 -m testing.substrate_selftest
 
 Covers: the six substrate rows are on the matrix (category
 substrate = blocking), the declared/undeclared honesty ladder
@@ -65,7 +65,7 @@ def _catalog_rows():
 
 
 def _honesty_ladder():
-    from testing.substrate_env import classify_absence
+    from testing.custom.substrate_env import classify_absence
     print('declared/undeclared honesty ladder')
     undeclared = {'declared': False, 'host': None,
                   'container_state': None, 'source': ''}
@@ -86,8 +86,8 @@ def _honesty_ladder():
 
 
 def _live_checks(by_name):
-    from testing.check_runners import run_check
-    from testing.substrate_env import resolve_mariadb
+    from testing.custom.check_runners import run_check
+    from testing.custom.substrate_env import resolve_mariadb
     reachable = resolve_mariadb()['host'] is not None
     print(f'live substrate checks (staging reachable: {reachable})')
     rows = []
@@ -124,7 +124,7 @@ def _live_checks(by_name):
 
 
 def _secret_hygiene(rows):
-    from testing.substrate_env import resolve_keydb, resolve_mariadb
+    from testing.custom.substrate_env import resolve_keydb, resolve_mariadb
     print('secret hygiene')
     secrets = {resolve_mariadb().get('password'),
                resolve_keydb().get('password')} - {'', None}

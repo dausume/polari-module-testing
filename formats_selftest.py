@@ -4,7 +4,7 @@ formats (the per-format pins the matrix carries as
 selftest:testing.formats, category `format`).
 
 Run from polari-framework/:
-    python3 -m testing.selftest_formats
+    python3 -m testing.formats_selftest
 
 For one reference class saved through the real DB seam, each
 format's exact shape is asserted so drift fails LOUDLY:

@@ -1,5 +1,5 @@
 """
-@module testing.report_yaml
+@module testing.custom.report_yaml
 
 acct-0: the pipeline-readable report — every CheckRun ALSO serializes
 to `test-results/test-report.yaml` (plus a timestamped copy per run)
